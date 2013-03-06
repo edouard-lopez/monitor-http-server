@@ -22,4 +22,4 @@ Note that lines starting with a `#` (dash) are ignored.
 
 Then you are good to go and run your first test
 
-	bash /path/to/monitor-servers.sh me@host.com ./custom-list.txt
+	bash /path/to/monitor-servers.sh me@host.com /path/to/custom-list.txt
