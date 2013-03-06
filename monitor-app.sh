@@ -6,9 +6,9 @@
 #		1. We need to install (http://doc.ubuntu-fr.org/cron#autres_considerations) :
 #			sudo apt-get install mailutils
 #		2. Add the recipient to the crontab :
-#			MAILTO="elopez@ajlsm.com"
+#			MAILTO="me@host.com"
 #		3. Run :
-#			./pleade-monitor.sh elopez@ajlsm.com http://jubilotheque.upmc.fr/
+#			./pleade-monitor.sh me@host.com http://example.com/
 
 
 scriptDir="$(dirname "$0")" # emplacement du script
@@ -16,7 +16,7 @@ scriptDir="$(dirname "$0")" # emplacement du script
 . "$scriptDir"/style.sh # include some style
 
 # Email To ?
-EMAIL_TO="${1:-elopez@ajlsm.com}"
+EMAIL_TO="${1:-me@host.com}"
 LOGS_DIR="$scriptDir"/logs
 
 # Remove the scheme (https?) and the trailing slash
@@ -33,7 +33,7 @@ function getSiteName() {
 # @param	string	application URL
 function getHttpCode() {
   appUrl="$1"
-	curl -A "AJLSM bot: status monitor" -s -o /dev/null -w "%{http_code}" "$appUrl"/version.xml
+	curl -A "$EMAIL_TO bot: status monitor" -s -o /dev/null -w "%{http_code}" "$appUrl"/version.xml
 }
 
 # entry point

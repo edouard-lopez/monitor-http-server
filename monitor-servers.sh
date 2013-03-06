@@ -3,7 +3,7 @@
 #	Check all website given in the list file
 #
 # USAGE
-#	./monitor-servers.sh elopez@ajlsm.com ./custom-list.txt
+#	./monitor-servers.sh me@host.com ./custom-list.txt
 #
 
 scriptDir="$(dirname "$0")" # emplacement du script
@@ -11,8 +11,8 @@ scriptDir="$(dirname "$0")" # emplacement du script
 . "$scriptDir"/style.sh # include some style
 
 #clear
-emailTo="${1:-elopez@ajlsm.com}"
-appList="${2:-"$scriptDir"/monitor-list.txt}" # URL to pleade
+emailTo="${1:-me@host.com}"
+appList="${2:-"$scriptDir"/monitor-list-default.txt}" # URL to pleade
 
 while read -r line
 do

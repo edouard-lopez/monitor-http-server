@@ -1,0 +1,4 @@
+# ignored hosts
+# http://wont-be.tested.com/
+# test
+http://my.website.com/
