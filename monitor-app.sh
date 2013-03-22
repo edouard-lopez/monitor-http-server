@@ -42,7 +42,7 @@ function doThings() {
 	appUrl="$1"
 	site="$(getSiteName "$appUrl")"
 	httpCode=$(getHttpCode "$appUrl")
-	notify=1 # défaut is to send a notification
+	notify=1 # assumption is that there is a problem
 
 	case "$httpCode" in
 	200)
@@ -79,7 +79,7 @@ function doThings() {
 	then
 		sendNotification "$subject" "$message"
 	else
-		printf "$message\n" #"$(getSiteName "$appUrl")"
+		printf "+++$message\n" #"$(getSiteName "$appUrl")"
 	fi
 }
 
