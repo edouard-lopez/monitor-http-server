@@ -22,9 +22,9 @@ LOGS_DIR="$scriptDir"/logs
 # Remove the scheme (https?) and the trailing slash
 # @param	string	application URL
 function getSiteName() {
-	appUrl="$1"
-  site="${appUrl#*//}" # remove the protocole
-  site="${site%/*}" # remove trailing slash
+	local appUrl="$1"
+  local site="${appUrl#*//}" # remove the protocole
+  local site="${site%/*}" # remove trailing slash
 
   echo "$site"
 }
@@ -32,17 +32,17 @@ function getSiteName() {
 # Get the HTTP status code
 # @param	string	application URL
 function getHttpCode() {
-  appUrl="$1"
+  local appUrl="$1"
 	curl -A "$EMAIL_TO bot: status monitor" -s -o /dev/null -w "%{http_code}" "$appUrl"/version.xml
 }
 
 # entry point
 # @param	string	application URL
 function doThings() {
-	appUrl="$1"
-	site="$(getSiteName "$appUrl")"
-	httpCode=$(getHttpCode "$appUrl")
-	notify=1 # assumption is that there is a problem
+	local appUrl="$1"
+	local site="$(getSiteName "$appUrl")"
+	local httpCode=$(getHttpCode "$appUrl")
+	local notify=1 # assumption is that there is a problem
 
 	case "$httpCode" in
 	200)
@@ -88,13 +88,13 @@ function doThings() {
 # @param	string	application URL
 # @param	string	message to log
 function logEvent() {
-	appUrl="$1"
-	message="[$(now)] $2"
-	site="$(getSiteName "$appUrl")"
-	site="${site/\//-}" # pour avoir un nom de fichier valide
+	local appUrl="$1"
+	local message=$(printf "[%s] %s\n" "$(now)" "$2")
+	local site="$(getSiteName "$appUrl")"
+	local site="${site/\//-}" # pour avoir un nom de fichier valide
 
-	appLog="$LOGS_DIR"/monitor-"$(today)"-"$site".log # one file per app
-	metaLog="$LOGS_DIR"/monitor-meta-"$(today)".log # aggregate one file per day
+	local appLog="$LOGS_DIR"/monitor-"$(today)"-"$site".log # one file per app
+	local metaLog="$LOGS_DIR"/monitor-meta-"$(today)".log # aggregate one file per day
 
 	echo $message >> "$appLog" # add to app log
 	echo $message >> "$metaLog" # add to meta log
@@ -105,8 +105,8 @@ function logEvent() {
 # @param	string	subject of the mail
 # @param	string	message of the mail
 function sendNotification() {
-	subject="$1"
-	message="$2"
+	local subject="$1"
+	local message="$2"
 
 	echo $message | mail -v -s "$subject" "$EMAIL_TO" # send email
 }
