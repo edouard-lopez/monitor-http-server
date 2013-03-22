@@ -8,7 +8,7 @@
 #		2. Add the recipient to the crontab :
 #			MAILTO="me@host.com"
 #		3. Run :
-#			./pleade-monitor.sh me@host.com http://example.com/
+#			./monitor-app.sh me@host.com http://example.com/
 
 
 scriptDir="$(dirname "$0")" # emplacement du script
@@ -121,7 +121,7 @@ function sendNotification() {
 }
 
 [[ ! -d "$LOGS_DIR" ]] && mkdir -p "$LOGS_DIR" # create log dir
-doThings "$2" # || { echo "[!] Could not execute pleade-monitor.sh ($@)" >&2; exit 1; }
+doThings "$2" # || { echo "[!] Could not execute monitor-app.sh ($@)" >&2; exit 1; }
 
 
 
