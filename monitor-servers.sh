@@ -20,6 +20,6 @@ do
   site="${line#*//}" # remove the protocole
   site="${site%/*}" # remove trailing slash
 
-  printf "[i] Checking ${_value}%s${_normal}...\n\t" "${site}"
+  printf "[i] Checking %s...\n\t" "$(_value ${site})"
 	"$scriptDir"/monitor-app.sh "$emailTo" "$line"
 done < "$appList"

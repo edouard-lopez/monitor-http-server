@@ -46,28 +46,28 @@ function doThings() {
 
 	case "$httpCode" in
 	200)
-		msg="[i] Pleade is ${_info}running${_normal} on %s%s\n"
+		msg=$(printf "[i] Pleade is %s on %%s%%s\n" "$(_info "running")")
 		notify=0	# don't send any notification when everything is ok
 		unset httpCode # remove the code (less noise in the logs)
 		;;
 	3??)
-		msg="[!] Page ${_warning}redirection${_normal} on %s [error: %s].\n\tCheck the resulting page is valid\n"
+		msg=$(printf "[!] Page %s on %%s [error: %%s].\n\tCheck the resulting page is valid\n" "$(_warning "redirection")")
 		notify=0	# don't send any notification when everything is ok
 		;;
 	4??)
-		msg="[!] Client ${_error}error${_normal} on %s [error: %s]!\n\tCheck your connectivity\n"
+		msg=$(printf "[!] Client %s on %%s [error: %%s]!\n\tCheck your connectivity\n" "$(_error "error")")
 		;;
 	500)
-		msg="[!] Internal ${_error}Server Error${_normal} on %s [error: %s]!\n\t${_error}Restart Tomcat${_normal}\n"
+		msg=$(printf "[!] Internal %s on %%s [error: %%s]!\n\t%s\n"" $(_error "Server Error")" "$(_error "Restart Tomcat")")
 		;;
 	503)
-		msg="[!] Service ${_error}Unavailable${_normal} on %s [error: %s]!\n\t${_error}Restart Tomcat${_normal}\n"
+		msg=$(printf "[!] Service %s on %%s [error: %%s]!\n\t%s\n" "$(_error "Unavailable")" "$(_error "Restart Tomcat")")
 		;;
 	5??)
-		msg="[!] Server ${_error}error${_normal} on %s [error: %s]!\n"
+		msg=$(printf "[!] Server %s on %%s [error: %%s]!\n" "$(_error "error")")
 		;;
 	*)
-		msg="[!] Unknown ${_error}error${_normal} on %s [error: %s]\n"
+		msg=$(printf "[!] Unknown %s on %%s [error: %%s]\n" "$(_error "error")")
 		;;
 	esac
 
