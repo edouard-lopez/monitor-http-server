@@ -7,6 +7,7 @@ Simple script to monitor if servers are responding (status 200) or not.
 ## Dependencies
 
 * [stylerc](https://github.com/edouard-lopez/stylerc): bash output style ;
+* [toolboxrc](https://github.com/edouard-lopez/toolboxrc): some stupid utilities ;
 * `mail` command to send notification (need to be correctly setup).
 
 ## Usage
