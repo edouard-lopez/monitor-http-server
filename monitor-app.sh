@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # DESCRIPTION
 #	check if a given URL is returning a HTTP 200 or not.
 #
@@ -12,8 +12,8 @@
 
 
 scriptDir="$(dirname "$0")" # emplacement du script
-. "$scriptDir"/toolbox.sh # charge quelques function utiles (today, etc.). Le
-. "$scriptDir"/style.sh # include some style
+. "$scriptDir"/toolboxrc # charge quelques function utiles (today, etc.). Le
+. "$scriptDir"/stylerc # include some style
 
 # Email To ?
 EMAIL_TO="${1:-me@host.com}"
