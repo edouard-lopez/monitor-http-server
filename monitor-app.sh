@@ -50,7 +50,6 @@ function doThings() {
 						"$(_valid "$httpCode")" \
 						"$(_valid "running")"
 					)"
-		msg=$(printf "[i] Pleade is %s on %%s%%s\n" "$(_info "running")")
 		notify=0	# don't send any notification when everything is ok
 		unset httpCode # remove the code (less noise in the logs)
 		;;

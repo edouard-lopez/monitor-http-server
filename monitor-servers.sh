@@ -12,7 +12,7 @@ scriptDir="$(dirname "$0")" # emplacement du script
 
 #clear
 emailTo="${1:-me@host.com}"
-appList="${2:-"$scriptDir"/monitor-list-default.txt}" # URL to pleade
+appList="${2:-"$scriptDir"/monitor-list-default.txt}" # URL to server
 
 while read -r line
 do
