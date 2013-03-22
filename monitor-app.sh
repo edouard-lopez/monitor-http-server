@@ -42,7 +42,7 @@ function doThings() {
 	appUrl="$1"
 	site="$(getSiteName "$appUrl")"
 	httpCode=$(getHttpCode "$appUrl")
-	notify=1 # par défaut on envoi un message !
+	notify=1 # défaut is to send a notification
 
 	case "$httpCode" in
 	200)
