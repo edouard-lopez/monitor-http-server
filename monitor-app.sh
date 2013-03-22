@@ -51,35 +51,44 @@ function doThings() {
 		unset httpCode # remove the code (less noise in the logs)
 		;;
 	3??)
-		msg=$(printf "[!] Page %s on %%s [error: %%s].\n\tCheck the resulting page is valid\n" "$(_warning "redirection")")
+		msg=$(printf "[%%s] Page %s on %%s %s %s\n" \
+						"$(_warning "redirection")" \
+						"$(_warning "->")" \
+						"Check the resulting page is valid"
+					)
 		notify=0	# don't send any notification when everything is ok
 		;;
 	4??)
-		msg=$(printf "[!] Client %s on %%s [error: %%s]!\n\tCheck your connectivity\n" "$(_error "error")")
+		msg=$(printf "[%%s] Client %s on %%s %s %s\n" \
+						"$(_error "error")" \
+						"$(_warning "->")" \
+						"Check your connectivity"
+				)
 		;;
 	500)
-		msg=$(printf "[!] Internal %s on %%s [error: %%s]!\n\t%s\n"" $(_error "Server Error")" "$(_error "Restart Tomcat")")
+		msg=$(printf "[%%s] Internal %s on %%s\n\t%s\n"" $(_error "Server Error")" "$(_error "Restart Tomcat")")
 		;;
 	503)
-		msg=$(printf "[!] Service %s on %%s [error: %%s]!\n\t%s\n" "$(_error "Unavailable")" "$(_error "Restart Tomcat")")
+		msg=$(printf "[%%s] Service %s on %%s\n\t%s\n" "$(_error "Unavailable")" "$(_error "Restart Tomcat")")
 		;;
 	5??)
-		msg=$(printf "[!] Server %s on %%s [error: %%s]!\n" "$(_error "error")")
+		msg=$(printf "[%%s] Server %s on %%s\n" "$(_error "error")")
 		;;
 	*)
-		msg=$(printf "[!] Unknown %s on %%s [error: %%s]\n" "$(_error "error")")
+		msg=$(printf "[%%s] Unknown %s on %%s\n" "$(_error "error")")
 		;;
 	esac
 
 	subject="$(printf "[Monitor] %s [error: %s] @ %s" "$site" "$httpCode" "$(now)")"
-	message="$(printf "$msg" "$appUrl" "$httpCode")"
+	message="$(printf "$msg" "$httpCode" "$appUrl")"
 	logEvent "$appUrl" "$message"
 
 	if (( $notify != 0 ))
 	then
+		printf "$message\n" #"$(getSiteName "$appUrl")"
 		sendNotification "$subject" "$message"
 	else
-		printf "+++$message\n" #"$(getSiteName "$appUrl")"
+		printf "$message\n" #"$(getSiteName "$appUrl")"
 	fi
 }
 
