@@ -3,6 +3,8 @@ monitor-http-server
 
 Simple script to monitor if servers are responding (status 200) or not.
 
+## Screenshot
+ ![Sample output](https://raw.github.com/edouard-lopez/monitor-http-server/master/http-monitor-server-screenshot.png)
 
 ## Dependencies
 
@@ -23,4 +25,4 @@ Note that lines starting with a `#` (dash) are ignored.
 
 Then you are good to go and run your first test
 
-	bash /path/to/monitor-servers.sh me@host.com /path/to/custom-list.txt
+	bash ./monitor-servers.sh me@host.com ./monitor-list-default.txt
