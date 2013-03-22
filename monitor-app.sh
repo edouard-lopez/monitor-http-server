@@ -46,36 +46,63 @@ function doThings() {
 
 	case "$httpCode" in
 	200)
+		msg="$(printf "[%s] Server is %s on: %%s%%s" \
+						"$(_valid "$httpCode")" \
+						"$(_valid "running")"
+					)"
 		msg=$(printf "[i] Pleade is %s on %%s%%s\n" "$(_info "running")")
 		notify=0	# don't send any notification when everything is ok
 		unset httpCode # remove the code (less noise in the logs)
 		;;
-	3??)
-		msg=$(printf "[%%s] Page %s on %%s %s %s\n" \
+	3??) # 301
+		# msg="$(printf "[%s] Page %-40s on: %%s %s %s" \
+		msg="$(printf "[%s] Page %s on: %%s %s %s" \
+						"$(_warning "$httpCode")" \
 						"$(_warning "redirection")" \
-						"$(_warning "->")" \
-						"Check the resulting page is valid"
-					)
+						"$(_valid "->\t")" \
+						"$(_warning "Check the resulting page is valid")"
+					)"
 		notify=0	# don't send any notification when everything is ok
 		;;
 	4??)
-		msg=$(printf "[%%s] Client %s on %%s %s %s\n" \
-						"$(_error "error")" \
-						"$(_warning "->")" \
-						"Check your connectivity"
-				)
+		msg="$(printf "[%s] Client %s on: %%s %s %s" \
+						"$(_error "$httpCode")" \
+						"$(_error "Error")" \
+						"$(_valid "->\t")" \
+						"$(_warning "Check your connectivity")"
+					)"
 		;;
 	500)
-		msg=$(printf "[%%s] Internal %s on %%s\n\t%s\n"" $(_error "Server Error")" "$(_error "Restart Tomcat")")
+		msg="$(printf "[%s] Internal %s on: %%s %s %s" \
+						"$(_error "$httpCode")" \
+						"$(_error "Server Error")" \
+						"$(_valid "->\t")" \
+						"$(_error "Restart Tomcat")"
+					)"
 		;;
 	503)
-		msg=$(printf "[%%s] Service %s on %%s\n\t%s\n" "$(_error "Unavailable")" "$(_error "Restart Tomcat")")
+		msg="$(printf "[%s] Service %s on: %%s %s %s" \
+						"$(_error "$httpCode")" \
+						"$(_error "Unavailable")" \
+						"$(_valid "->\t")" \
+						"$(_error "Restart Tomcat")"
+					)"
 		;;
 	5??)
-		msg=$(printf "[%%s] Server %s on %%s\n" "$(_error "error")")
+		msg="$(printf "[%s] Server %s on: %%s %s %s" \
+						"$(_error "$httpCode")" \
+						"$(_error "error")" \
+						"$(_valid "->\t")" \
+						"$(_error "Check manually")"
+					)"
 		;;
 	*)
-		msg=$(printf "[%%s] Unknown %s on %%s\n" "$(_error "error")")
+		msg="$(printf "[%s] Unknown %s on: %%s %s %s" \
+						"$(_error "$httpCode")" \
+						"$(_error "error")" \
+						"$(_valid "->\t")" \
+						"$(_error "Check manually")"
+					)"
 		;;
 	esac
 
