@@ -106,7 +106,7 @@ function doThings() {
 	esac
 
 	subject="$(printf "[Monitor] %s [error: %s] @ %s" "$site" "$httpCode" "$(now)")"
-	message="$(printf "$msg" "$httpCode" "$appUrl")"
+	message="$(printf "$msg\n" "${appUrl:0:40}")"
 	logEvent "$appUrl" "$message"
 
 	if (( $notify != 0 ))
