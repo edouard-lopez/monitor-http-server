@@ -12,7 +12,7 @@ scriptDir="$(dirname "$0")" # emplacement du script
 
 #clear
 emailTo="${1:-me@host.com}"
-appList="${2:-"$scriptDir"/monitor-list-default.txt}" # URL to server
+srvList="${2:-"$scriptDir"/monitor-list-default.txt}" # URL to server
 
 function checkRequirement() {
   if ! type mail 2> /dev/null; then
@@ -34,4 +34,4 @@ do
 
   printf "Checking %s...\n\t" "$(_value ${site})"
 	"$scriptDir"/monitor-app.sh "$emailTo" "$line"
-done < "$appList"
+  done < "$srvList"
