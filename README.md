@@ -14,6 +14,16 @@ You need to have a **mail server** configured to be able to send notification.
 * [stylerc](https://github.com/edouard-lopez/stylerc): bash output style ;
 * [toolboxrc](https://github.com/edouard-lopez/toolboxrc): some stupid utilities ;
 
+## Install
+
+The project use 2 submodule, instructions below cover an *out of the box* installation:
+
+```
+git clone git@github.com:edouard-lopez/monitor-http-server.git
+cd monitor-http-server
+git submodule init && git submodule update # install the submodules
+```
+
 ## Usage
 
 First you need to edit the file `monitor-list.txt` and add some servers URLs (using their [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)).
