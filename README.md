@@ -8,9 +8,11 @@ Simple script to monitor if servers are responding (status 200) or not.
 
 ## Dependencies
 
+You need to have a **mail server** configured to be able to send notification.
+
+* `mail` command to send notification.
 * [stylerc](https://github.com/edouard-lopez/stylerc): bash output style ;
 * [toolboxrc](https://github.com/edouard-lopez/toolboxrc): some stupid utilities ;
-* `mail` command to send notification (need to be correctly setup).
 
 ## Usage
 
