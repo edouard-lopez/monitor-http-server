@@ -16,7 +16,7 @@ You need to have a **mail server** configured to be able to send notification.
 
 ## Install
 
-The project use 2 submodule, instructions below cover an *out of the box* installation:
+The project use two submodules, the instructions below cover an *out of the box* installation process:
 
 ```
 git clone git@github.com:edouard-lopez/monitor-http-server.git
