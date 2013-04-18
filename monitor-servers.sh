@@ -14,6 +14,18 @@ scriptDir="$(dirname "$0")" # emplacement du script
 emailTo="${1:-me@host.com}"
 appList="${2:-"$scriptDir"/monitor-list-default.txt}" # URL to server
 
+function checkRequirement() {
+  if ! type mail 2> /dev/null; then
+    printf "%s Requirement %s %s\t %s\n" \
+            "$_w" \
+            "$(_warning "missing")" \
+            "$(_valid "->")" \
+            "$(_warning "Install and configure a 'mail' server")"
+  fi
+}
+
+checkRequirement
+
 while read -r line
 do
 	[[ "$line" = \#* ]] && continue # ignore lines starting by '#'

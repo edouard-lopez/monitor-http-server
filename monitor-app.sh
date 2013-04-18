@@ -143,7 +143,9 @@ function sendNotification() {
 	local subject="$1"
 	local message="$2"
 
-	echo $message | mail -v -s "$subject" "$EMAIL_TO" # send email
+  if type mail 2> /dev/null; then
+    echo $message | mail -v -s "$subject" "$EMAIL_TO" # send Email
+  fi
 }
 
 [[ ! -d "$LOGS_DIR" ]] && mkdir -p "$LOGS_DIR" # create log dir
