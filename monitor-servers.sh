@@ -14,6 +14,9 @@ scriptDir="$(dirname "$0")" # emplacement du script
 emailTo="${1:-me@host.com}"
 srvList="${2:-"$scriptDir"/monitor-list-default.txt}" # URL to server
 
+
+# @description check if requirement are met and display message
+# @return    void
 function checkRequirement() {
   if ! type mail 2> /dev/null; then
     printf "%s Requirement %s %s\t %s\n" \
@@ -24,6 +27,10 @@ function checkRequirement() {
   fi
 }
 
+# @description monitor the list of provider server, send mail to given adress
+# @param    $1|$srvList  list of server to monitor
+# @param    $2|$emailTo  target email adress
+# @return    void
 function monitor()
 {
   local srvList="$1"
