@@ -19,7 +19,7 @@ srvList="${2:-"$scriptDir"/monitor-list-default.txt}" # URL to server
 # @return    void
 function checkRequirement() {
   if ! type mail 2> /dev/null; then
-    printf "%s Requirement %s %s\t %s\n" \
+    printf " \b--\n\t%s Requirement %s %s\t %s\n--\n\n" \
             "$_w" \
             "$(_warning "missing")" \
             "$(_valid "->")" \
