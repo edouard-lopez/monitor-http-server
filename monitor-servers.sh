@@ -25,13 +25,19 @@ function checkRequirement() {
 }
 
 checkRequirement
+function monitor()
+{
+  local srvList="$1"
+  local emailTo="$2"
 
-while read -r line
-do
-	[[ "$line" = \#* ]] && continue # ignore lines starting by '#'
-  site="${line#*//}" # remove the protocole
-  site="${site%/*}" # remove trailing slash
+  while read -r line
+  do
+    [[ "$line" = \#* ]] && continue # ignore lines starting by '#'
+    site="${line#*//}" # remove the protocole
+    site="${site%/*}" # remove trailing slash
 
-  printf "Checking %s...\n\t" "$(_value ${site})"
-	"$scriptDir"/monitor-app.sh "$emailTo" "$line"
+    printf "Checking %s...\n\t" "$(_value ${site})"
+    "$scriptDir"/monitor-app.sh "$emailTo" "$line"
   done < "$srvList"
+}
+monitor "$srvList" "$emailTo"
