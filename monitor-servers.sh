@@ -24,7 +24,6 @@ function checkRequirement() {
   fi
 }
 
-checkRequirement
 function monitor()
 {
   local srvList="$1"
@@ -40,4 +39,7 @@ function monitor()
     "$scriptDir"/monitor-app.sh "$emailTo" "$line"
   done < "$srvList"
 }
+
+# start
+checkRequirement
 monitor "$srvList" "$emailTo"
