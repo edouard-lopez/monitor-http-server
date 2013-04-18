@@ -10,7 +10,7 @@
 #   3. Run :
 #     ./monitor-app.sh me@host.com http://example.com/
 
-
+# set -x
 scriptDir="$(dirname "$0")" # emplacement du script
 . "$scriptDir"/toolboxrc # charge quelques function utiles (today, etc.). Le
 . "$scriptDir"/stylerc # include some style
@@ -33,8 +33,7 @@ function getSiteName() {
 # @param  string  application URL
 function getHttpCode() {
   local appUrl="$1"
-  printf "[%s]\n" "$appUrl"
-  curl -A "$EMAIL_TO bot: status monitor" -s -o /dev/null -w "%{http_code}" "$appUrl"/version.xml
+  curl -A "$EMAIL_TO bot: status monitor" -s -o /dev/null -w "%{http_code}" "$appUrl"
 }
 
 # entry point
