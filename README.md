@@ -37,4 +37,6 @@ Note that lines starting with a `#` (dash) are ignored.
 
 Then you are good to go and run your first test
 
-	bash ./monitor-servers.sh me@host.com ./monitor-list-default.txt
+	bash ./monitor-servers.sh 
+    # or
+	bash ./monitor-servers.sh my@email.org ./monitoring-list.txt
