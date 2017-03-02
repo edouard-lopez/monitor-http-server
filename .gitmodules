@@ -1,6 +1,6 @@
 [submodule "toolbox"]
 	path = toolbox
-	url = git@github.com:edouard-lopez/toolboxrc.git
+	url = https://github.com/edouard-lopez/toolboxrc.git
 [submodule "style"]
 	path = style
-	url = git@github.com:edouard-lopez/stylerc.git
+	url = https://github.com/edouard-lopez/stylerc.git
